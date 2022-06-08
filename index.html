@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+	<body>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .static {
+                position:absolute;
+                background: white;
+            }
+
+            .static:hover {
+                opacity:0;
+            }
+            /* Create two equal columns that floats next to each other */
+            .column {
+                float: left;
+                width: 50%;
+                padding: 10px;
+                height: 300px; /* Should be removed. Only for demonstration */
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            body {
+                /* font-family: 'Google Sans', sans-serif; */
+                /* font-family: 'Times New Roman', Times, serif; */
+                font-family: 'Helvetica';
+                padding: 10px;
+            }
+            a {
+                color: #3271a8;
+                font-size: 1.2em;
+                padding-left: 15px;
+                text-decoration: none;
+                
+            }
+            a:visited, a:hover, a:focus {
+                text-decoration: none;
+                color: #3271a8;
+            }
+            a.nobord:visited, a.nobord:hover, a.nobord:focus {
+                text-decoration: none;
+                color: black;
+            }
+
+            .t {
+                display: table;
+                width: 100%;
+                height: auto;
+                vertical-align: middle;
+            }
+
+            ul {
+                display: table-row
+            }
+
+            li {
+                display: table-cell
+            }
+
+            iframe {
+                display: inline-block;
+            }
+
+            h4 {
+                display: flex;
+                flex-direction: row;
+                font-size: 1.5em;
+                margin-top: 2em;
+                margin-bottom: 0.5em;
+            }
+            h4:before, h4:after {
+                content: "";
+                flex: 1 1;
+                border-bottom: 3px solid #BBBBBB;
+                margin: auto;
+            }
+            h4:before {
+                margin-right: 10px;
+            }
+            h4:after {
+                margin-left: 10px;
+            }
+
+            h1 {
+                display: block;
+                font-size: 2em;
+                margin-top: 0.67em;
+                margin-bottom: 0.37em;
+                margin-left: 0;
+                margin-right: 0;
+                font-weight: bold;
+                text-align: center; 
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            h3 {
+                display: block;
+                font-size: 1.8em;
+                margin-top: 0.1em;
+                margin-bottom: 0.67em;
+                margin-left: 0;
+                margin-right: 0;
+                font-weight: bold;
+                text-align: center; 
+                color: #888888; 
+            }
+
+            h5 {
+                display: block;
+                font-size: 1.3em;
+                margin-top: 1.5em;
+                margin-bottom: 0.17em;
+                margin-left: 0;
+                margin-right: 0;
+                font-weight: bold;
+                text-align: center; 
+            }
+
+           
+            .ours {
+                font-size: 1.2em;
+                text-decoration: none;
+                color: var(--title-color);
+                --title-color: #18ACBF;
+                margin-right: 20px;
+                }
+
+            .ours_circle {
+                display: inline-block;
+                width: 15px;
+                height: 15px;
+                line-height: 15px;
+                text-align: center;
+                border-radius: 50%;
+                background: var(--title-color);
+                color: #18ACBF;
+            }
+
+            .gt {
+                font-size: 1.2em;
+                text-decoration: none;
+                color: var(--title-color);
+                --title-color: #FF0000;
+                margin-right: 20px;
+                }
+
+            .gt_circle {
+                display: inline-block;
+                width: 15px;
+                height: 15px;
+                line-height: 15px;
+                text-align: center;
+                border-radius: 50%;
+                background: var(--title-color);
+                color: #FF0000;
+            }
+
+            .sota {
+                font-size: 1.2em;
+                text-decoration: none;
+                color: var(--title-color);
+                --title-color: #d6c100;
+                }
+
+            .sota_circle {
+                display: inline-block;
+                width: 15px;
+                height: 15px;
+                line-height: 15px;
+                text-align: center;
+                border-radius: 50%;
+                background: var(--title-color);
+                color: #d6c100;
+            }
+
+            .video-container {
+                position: relative;
+            }
+
+            video {
+              width: 32%;
+              min-width: 400px;
+            }
+
+            .title-label {
+                position: absolute;
+                z-index: 9;
+                color: blue;
+                margin-top: 5px;
+                margin-left: 5px;
+            }
+            .tab { 
+                display:inline-block; 
+                margin-left: 480px; 
+            }
+
+            #custom-message {
+                position:relative;
+                color: #000;
+                z-index:1;
+                top: 10px;    
+                right: -10px;
+            }
+
+        </style>
+
+        <header>
+          <h1> Where Is The Ball : 3D Ball Trajectory Estimation From a Monocular Tracking</h1><h3>(Submission #71)</h3>
+        </header>
+        <h4> 3D Visualizers </h4>
+
+        
+
+        <center>
+        <div class="row">
+            <div class="column">
+                <h2> Trajectory Visualizer</h2>
+                <a href="content/checkerboard.html" target="_blank" style="border: none;" class="nobord">
+                    <img class="active" src="content/images/checkerboard.gif" height="300px" border="3px solid #000000">
+                </a>
+            </div>
+            <div class="column">
+                <h2> Tennis Visualizer</h2>
+                <img class="active" src="content/images/tennis.gif" height="300px" border="3px solid">
+                <br>
+                    <a href="content/tennis_visualizer-main/tennis_real.html?input=../trajectories/Tennis/tennis_real.json" target="_blank">Tennis - Real</a><br>
+                    <a href="content/tennis_visualizer-main/tennis_synthetic.html?input=../trajectories/Tennis/tennis_synthetic.json" target="_blank">Tennis - Synthetic</a>
+            </div>
+        </div>
+        </center>
+
+        <br><br><br><br><br><br><br><br>
+
+        <h4> Video results </h4>
+        <center>
+
+        <!-- MOCAP -->
+        <h5> Mocap - Synthetic </h5>
+
+        <span class="ours">
+            <span class="ours_circle" href="/">.</span>
+            <span>Ours</span>
+        </span>
+
+        <span class="gt">
+            <span class="gt_circle" href="/">.</span>
+            <span>Ground truth</span>
+        </span>
+
+
+        <div class="row">
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/mocap/mocap_syn1.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/mocap/mocap_syn2.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/mocap/mocap_syn8.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <h5> Mocap - Real </h5>
+
+        <span class="ours">
+            <span class="ours_circle" href="/">.</span>
+            <span>Ours</span>
+        </span>
+
+        <span class="gt">
+            <span class="gt_circle" href="/">.</span>
+            <span>Ground truth</span>
+        </span>
+
+        <div class="row">
+            <video width="480"  controls playsinline playsinline autoplay muted loop muted loop>
+                <source src="content/videos/mocap/mocap_real0.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/mocap/mocap_real31.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/mocap/mocap_real68.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- IPL -->
+        <h5> IPL (Soccer) - Synthetic </h5>
+        <span class="ours">
+            <span class="ours_circle" href="/">.</span>
+            <span>Ours</span>
+        </span>
+
+        <span class="gt">
+            <span class="gt_circle" href="/">.</span>
+            <span>Ground truth</span>
+        </span>
+
+        <div class="row">
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/ipl/ipl_syn0.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/ipl/ipl_syn20.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/ipl/ipl_syn34.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <h5> IPL (Soccer) - Real </h5>
+        <span class="ours">
+            <span class="ours_circle" href="/">.</span>
+            <span>Ours</span>
+        </span>
+
+        <span class="gt">
+            <span class="gt_circle" href="/">.</span>
+            <span>Ground truth</span>
+        </span>
+
+        <div class="row">
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/ipl/ipl_real1.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/ipl/ipl_real4.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/ipl/ipl_real6.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- TrackNet(Tennis)  -->
+        <h5> TrackNet (Tennis) - Synthetic </h5>
+        <span class="ours">
+            <span class="ours_circle" href="/">.</span>
+            <span>Ours</span>
+        </span>
+
+        <span class="gt">
+            <span class="gt_circle" href="/">.</span>
+            <span>Ground truth</span>
+        </span>
+
+        <div class="row">
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/tennis/tennis_syn12.mp4" type="video/mp4">
+            </video>
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/tennis/tennis_syn21.mp4" type="video/mp4">
+            </video>
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/tennis/tennis_syn47.mp4" type="video/mp4">
+            </video>
+        </div>
+
+
+        <h5> TrackNet (Tennis) - Real </h5>
+        <span class="ours">
+            <span class="ours_circle" href="/">.</span>
+            <span>Ours</span>
+        </span>
+
+        <span class="gt">
+            <span class="gt_circle" href="/">.</span>
+            <span>Ground truth</span>
+        </span>
+
+        <div class="row">
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/tennis/tennis_real3.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/tennis/tennis_real36.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/tennis/tennis_real25.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="row">
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/tennis/tennis_real3_pts.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/tennis/tennis_real36_pts.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/tennis/tennis_real25_pts.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <h5> Comparison to SOTA - Simple Synthetic</h5>
+
+        <span class="ours">
+            <span class="ours_circle" href="/">.</span>
+            <span>Ours</span>
+        </span>
+
+        <span class="gt">
+            <span class="gt_circle" href="/">.</span>
+            <span>Ground truth</span>
+        </span>
+
+        <span class="sota">
+            <span class="sota_circle" href="/">.</span>
+            <span>Prior work</span>
+        </span>
+
+        <div class="row">
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/sota/mocanu_clean.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/sota/shen_clean.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/sota/ours_clean.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="row">
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/sota/mocanu_5sd.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/sota/shen_5sd.mp4" type="video/mp4">
+            </video>
+
+            <video width="480"  controls playsinline autoplay muted loop>
+                <source src="content/videos/sota/ours_5sd.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        </center>
+
+    </body>
+</html>
